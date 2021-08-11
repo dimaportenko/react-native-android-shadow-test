@@ -30,14 +30,26 @@ const App = () => {
   };
 
   return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
+    <SafeAreaView style={[backgroundStyle, {flex: 1}]}>
+      {/*<StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />*/}
       <View style={{backgroundColor: 'purple'}}>
         <Text>TEst</Text>
       </View>
-      <ShadowView style={{backgroundColor: 'red', margin: 20}}>
-        <Text>TEst</Text>
-      </ShadowView>
+      <View style={{padding: 20}}>
+        <ShadowView style={{}}>
+          <Text>TEst</Text>
+        </ShadowView>
+      </View>
+      <View style={{padding: 20}}>
+        <ShadowView style={{backgroundColor: 'gray'}}>
+          <Text>TEst</Text>
+        </ShadowView>
+      </View>
+      <View style={{padding: 20}}>
+        <ShadowView style={{backgroundColor: 'red'}}>
+          <Text>TEst</Text>
+        </ShadowView>
+      </View>
     </SafeAreaView>
   );
 };
