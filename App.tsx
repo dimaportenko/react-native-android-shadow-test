@@ -35,7 +35,7 @@ const App = () => {
       <View style={{backgroundColor: 'purple'}}>
         <Text>TEst</Text>
       </View>
-      <ShadowView style={{backgroundColor: 'red'}}>
+      <ShadowView style={{backgroundColor: 'red', margin: 20}}>
         <Text>TEst</Text>
       </ShadowView>
     </SafeAreaView>
