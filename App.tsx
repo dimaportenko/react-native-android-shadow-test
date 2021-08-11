@@ -9,12 +9,18 @@
  */
 
 import React from 'react';
-import {SafeAreaView, Text, useColorScheme, View} from 'react-native';
+import {
+  SafeAreaView,
+  StyleSheet,
+  Text,
+  useColorScheme,
+  View,
+} from 'react-native';
 
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 
 // @ts-ignore
-import ShadowView from './src/native/shadow';
+import {ShadowView} from './src/native/shadow';
 
 const App = () => {
   const isDarkMode = useColorScheme() === 'dark';
@@ -35,17 +41,29 @@ const App = () => {
         </ShadowView>
       </View>
       <View style={{padding: 20}}>
-        <ShadowView style={{backgroundColor: 'gray'}}>
+        <ShadowView style={{...styles.shadow, backgroundColor: 'gray'}}>
           <Text>TEst</Text>
         </ShadowView>
       </View>
       <View style={{padding: 20}}>
-        <ShadowView style={{backgroundColor: 'red'}}>
+        <ShadowView style={[{backgroundColor: 'red'}, styles.shadow]}>
           <Text>TEst</Text>
         </ShadowView>
       </View>
     </SafeAreaView>
   );
 };
+
+const styles = StyleSheet.create({
+  shadow: {
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 4,
+    },
+    shadowOpacity: 0.3,
+    shadowRadius: 4.65,
+  },
+});
 
 export default App;
