@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
       width: 2,
       height: 4,
     },
-    shadowOpacity: 0.3,
+    shadowOpacity: 0.6,
     shadowRadius: 4.65,
   },
   shadow1: {
@@ -74,7 +74,7 @@ const styles = StyleSheet.create({
       width: 1,
       height: 4,
     },
-    shadowOpacity: 0.7,
+    shadowOpacity: 0.3,
     shadowRadius: 3.65,
   },
   shadow2: {
@@ -82,7 +82,7 @@ const styles = StyleSheet.create({
       width: 1,
       height: 4,
     },
-    shadowOpacity: 0.5,
+    shadowOpacity: 0.8,
     shadowRadius: 3.65,
   },
 });

@@ -30,6 +30,10 @@ class ShadowView(
         shadow_downscale = 1f
     }
 
+    fun getColorWithOpacity(color: Int, opacity: Float): Int {
+        return (opacity * 255.0f).toInt() shl 24 or (color and 0x00ffffff)
+    }
+
     fun setShadowProps(shadowProps: ReadableMap?) {
         if (shadowProps != null) {
             var shadowOffset = shadowProps.getMap("shadowOffset")
@@ -53,14 +57,13 @@ class ShadowView(
                 var shadowColor = shadowProps.getInt("shadowColor")
                 if (shadowProps.hasKey("shadowOpacity")) {
                     var shadowOpacity = shadowProps.getDouble("shadowOpacity").toFloat()
-                    shadowColor = (shadowOpacity * 255.0f).toInt() shl 24 or (shadowColor and 0x00ffffff)
+                    shadowColor = getColorWithOpacity(shadowColor, shadowOpacity)
                 }
                 shadow_color = shadowColor
                 shadow_with_color = false
             } else if (shadowProps.hasKey("shadowOpacity")) {
                 var shadowOpacity = shadowProps.getDouble("shadowOpacity").toFloat()
-                var shadowColor = (shadowOpacity * 255.0f).toInt() shl 24 or (0 and 0x00ffffff)
-                shadow_color = shadowColor
+                shadow_color = getColorWithOpacity(0, shadowOpacity)
             }
 
             Log.d("ShadowView", shadowProps.toString())
