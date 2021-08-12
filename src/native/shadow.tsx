@@ -25,9 +25,11 @@ type ShadowProps =
     }
   | undefined;
 
-const ShadowComponent = requireNativeComponent<{
-  shadowProps: ShadowProps;
-}>('ShadowView');
+const ShadowComponent = requireNativeComponent<
+  {
+    shadowProps: ShadowProps;
+  } & ViewProps
+>('ShadowView');
 
 type Props = ViewProps;
 
