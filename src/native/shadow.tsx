@@ -1,10 +1,12 @@
 import React, {FC} from 'react';
 import {
+  Platform,
   processColor,
   ProcessedColorValue,
   requireNativeComponent,
   StyleSheet,
   ViewProps,
+  View,
 } from 'react-native';
 
 /**
@@ -35,6 +37,13 @@ const ShadowComponent = requireNativeComponent<
 type Props = ViewProps;
 
 export const ShadowBox: FC<Props> = ({children, style, ...otherProps}) => {
+  if (Platform.OS !== 'android') {
+    return (
+      <View {...otherProps} style={style}>
+        {children}
+      </View>
+    );
+  }
   const flattenStyles = StyleSheet.flatten(style);
   const shadowStyle: ShadowProps = {
     shadowColor: processColor(flattenStyles.shadowColor),
