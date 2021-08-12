@@ -3,6 +3,8 @@ package com.reactnativeandroidshadowtest.shadow
 import android.content.Context
 import android.graphics.Color
 import android.util.AttributeSet
+import android.util.Log
+import com.facebook.react.bridge.ReadableMap
 import com.reactnativeandroidshadowtest.R
 
 /**
@@ -28,4 +30,26 @@ class ShadowView(
         shadow_downscale = 1f
     }
 
+    fun setShadowProps(shadowProps: ReadableMap?) {
+        if (shadowProps != null) {
+            var shadowOffset = shadowProps.getMap("shadowOffset")
+            if (shadowOffset != null) {
+                if (shadowOffset.hasKey("width")) {
+                    var shadowX = shadowOffset.getDouble("width").toFloat()
+                    shadow_x_shift = shadowX
+                }
+
+                if (shadowOffset.hasKey("height")) {
+                    var shadowY = shadowOffset.getDouble("height").toFloat()
+                    shadow_y_shift = shadowY
+                }
+            }
+            if (shadowProps.hasKey("shadowRadius")) {
+                var shadowRadius = shadowProps.getDouble("shadowRadius").toFloat()
+                shadow_radius = shadowRadius
+            }
+
+            Log.d("ShadowView", shadowProps.toString())
+        }
+    }
 }

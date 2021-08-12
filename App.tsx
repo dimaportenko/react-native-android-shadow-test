@@ -11,6 +11,7 @@
 import React from 'react';
 import {
   SafeAreaView,
+  StatusBar,
   StyleSheet,
   Text,
   useColorScheme,
@@ -18,9 +19,7 @@ import {
 } from 'react-native';
 
 import {Colors} from 'react-native/Libraries/NewAppScreen';
-
-// @ts-ignore
-import {ShadowView} from './src/native/shadow';
+import {ShadowBox} from './src/native/shadow';
 
 const App = () => {
   const isDarkMode = useColorScheme() === 'dark';
@@ -31,24 +30,24 @@ const App = () => {
 
   return (
     <SafeAreaView style={[backgroundStyle, {flex: 1}]}>
-      {/*<StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />*/}
+      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
       <View style={{backgroundColor: 'purple'}}>
         <Text>TEst</Text>
       </View>
       <View style={{padding: 20}}>
-        <ShadowView style={{}}>
-          <Text>TEst</Text>
-        </ShadowView>
+        {/*<ShadowBox style={{}}>*/}
+        {/*  <Text>TEst</Text>*/}
+        {/*</ShadowBox>*/}
       </View>
       <View style={{padding: 20}}>
-        <ShadowView style={{...styles.shadow, backgroundColor: 'gray'}}>
+        <ShadowBox style={{...styles.shadow, backgroundColor: 'gray'}}>
           <Text>TEst</Text>
-        </ShadowView>
+        </ShadowBox>
       </View>
       <View style={{padding: 20}}>
-        <ShadowView style={[{backgroundColor: 'red'}, styles.shadow]}>
+        <ShadowBox style={[{backgroundColor: 'red'}, styles.shadow1]}>
           <Text>TEst</Text>
-        </ShadowView>
+        </ShadowBox>
       </View>
     </SafeAreaView>
   );
@@ -58,11 +57,20 @@ const styles = StyleSheet.create({
   shadow: {
     shadowColor: '#000',
     shadowOffset: {
-      width: 0,
+      width: 2,
       height: 4,
     },
     shadowOpacity: 0.3,
     shadowRadius: 4.65,
+  },
+  shadow1: {
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 1,
+      height: 4,
+    },
+    shadowOpacity: 0.3,
+    shadowRadius: 3.65,
   },
 });
 

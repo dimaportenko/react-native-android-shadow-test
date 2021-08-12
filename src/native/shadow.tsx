@@ -1,10 +1,10 @@
+import React, {FC} from 'react';
 import {
   ColorValue,
   requireNativeComponent,
   StyleSheet,
   ViewProps,
 } from 'react-native';
-import {FC} from 'react';
 
 /**
  * Composes `View`.
@@ -31,7 +31,7 @@ const ShadowComponent = requireNativeComponent<{
 
 type Props = ViewProps;
 
-export const ShadowView: FC<Props> = ({style, ...otherProps}) => {
+export const ShadowBox: FC<Props> = ({children, style, ...otherProps}) => {
   const flattenStyles = StyleSheet.flatten(style);
   const shadowStyle: ShadowProps = {
     shadowColor: flattenStyles.shadowColor,
@@ -39,5 +39,9 @@ export const ShadowView: FC<Props> = ({style, ...otherProps}) => {
     shadowOpacity: flattenStyles.shadowOpacity,
     shadowRadius: flattenStyles.shadowRadius,
   };
-  return <ShadowComponent {...otherProps} shadowProps={shadowStyle} />;
+  return (
+    <ShadowComponent {...otherProps} shadowProps={shadowStyle} style={style}>
+      {children}
+    </ShadowComponent>
+  );
 };

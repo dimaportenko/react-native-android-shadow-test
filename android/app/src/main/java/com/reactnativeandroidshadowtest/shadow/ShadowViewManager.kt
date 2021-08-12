@@ -1,9 +1,11 @@
 package com.reactnativeandroidshadowtest.shadow
 
-import com.facebook.react.uimanager.SimpleViewManager
 import com.facebook.react.uimanager.ThemedReactContext
 import com.facebook.react.bridge.ReactApplicationContext
 import com.facebook.react.uimanager.ViewGroupManager
+import com.facebook.react.bridge.ReadableMap
+
+import com.facebook.react.uimanager.annotations.ReactProp
 
 
 class ShadowViewManager(
@@ -18,4 +20,8 @@ class ShadowViewManager(
         return ShadowView(context)
     }
 
+    @ReactProp(name = "shadowProps")
+    fun setShadowProps(view: ShadowView, shadowProps: ReadableMap?) {
+        view.setShadowProps(shadowProps)
+    }
 }
