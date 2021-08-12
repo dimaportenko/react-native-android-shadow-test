@@ -51,8 +51,16 @@ class ShadowView(
 
             if (shadowProps.hasKey("shadowColor")) {
                 var shadowColor = shadowProps.getInt("shadowColor")
+                if (shadowProps.hasKey("shadowOpacity")) {
+                    var shadowOpacity = shadowProps.getDouble("shadowOpacity").toFloat()
+                    shadowColor = (shadowOpacity * 255.0f).toInt() shl 24 or (shadowColor and 0x00ffffff)
+                }
                 shadow_color = shadowColor
                 shadow_with_color = false
+            } else if (shadowProps.hasKey("shadowOpacity")) {
+                var shadowOpacity = shadowProps.getDouble("shadowOpacity").toFloat()
+                var shadowColor = (shadowOpacity * 255.0f).toInt() shl 24 or (0 and 0x00ffffff)
+                shadow_color = shadowColor
             }
 
             Log.d("ShadowView", shadowProps.toString())

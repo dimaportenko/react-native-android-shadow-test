@@ -49,6 +49,11 @@ const App = () => {
           <Text>TEst</Text>
         </ShadowBox>
       </View>
+      <View style={{padding: 20}}>
+        <ShadowBox style={[{backgroundColor: 'pink'}, styles.shadow2]}>
+          <Text>TEst</Text>
+        </ShadowBox>
+      </View>
     </SafeAreaView>
   );
 };
@@ -69,7 +74,15 @@ const styles = StyleSheet.create({
       width: 1,
       height: 4,
     },
-    shadowOpacity: 0.3,
+    shadowOpacity: 0.7,
+    shadowRadius: 3.65,
+  },
+  shadow2: {
+    shadowOffset: {
+      width: 1,
+      height: 4,
+    },
+    shadowOpacity: 0.5,
     shadowRadius: 3.65,
   },
 });
