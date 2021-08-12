@@ -49,6 +49,12 @@ class ShadowView(
                 shadow_radius = shadowRadius
             }
 
+            if (shadowProps.hasKey("shadowColor")) {
+                var shadowColor = shadowProps.getInt("shadowColor")
+                shadow_color = shadowColor
+                shadow_with_color = false
+            }
+
             Log.d("ShadowView", shadowProps.toString())
         }
     }

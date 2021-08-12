@@ -1,6 +1,7 @@
 import React, {FC} from 'react';
 import {
-  ColorValue,
+  processColor,
+  ProcessedColorValue,
   requireNativeComponent,
   StyleSheet,
   ViewProps,
@@ -15,7 +16,7 @@ import {
  */
 type ShadowProps =
   | {
-      shadowColor?: ColorValue | undefined;
+      shadowColor?: ProcessedColorValue | null | undefined;
       shadowOffset?: {
         width?: number;
         height?: number;
@@ -36,7 +37,7 @@ type Props = ViewProps;
 export const ShadowBox: FC<Props> = ({children, style, ...otherProps}) => {
   const flattenStyles = StyleSheet.flatten(style);
   const shadowStyle: ShadowProps = {
-    shadowColor: flattenStyles.shadowColor,
+    shadowColor: processColor(flattenStyles.shadowColor),
     shadowOffset: flattenStyles.shadowOffset,
     shadowOpacity: flattenStyles.shadowOpacity,
     shadowRadius: flattenStyles.shadowRadius,
