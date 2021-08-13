@@ -1,9 +1,7 @@
 package com.reactnativeandroidshadowtest.shadow
 
 import android.content.Context
-import android.graphics.Color
 import android.util.AttributeSet
-import android.util.Log
 import com.facebook.react.bridge.ReadableMap
 import com.reactnativeandroidshadowtest.R
 
@@ -18,15 +16,15 @@ class ShadowView(
 ) :
     ShadowLayout(context, attrs, defStyleAttr, defStyleRes) {
     init {
-        shadow_color = Color.parseColor("#ffa8a8");
-        shadow_with_color = true
+        shadow_color = 0
+        shadow_with_color = false
         shadow_with_content = true
         shadow_with_css_scale = true
         shadow_with_dpi_scale = true
         shadow_cast_only_background = true
-        shadow_x_shift = 3.0f
-        shadow_y_shift = 3.0f
-        shadow_radius = 5.0f
+        shadow_x_shift = 0f
+        shadow_y_shift = 0f
+        shadow_radius = 0f
         shadow_downscale = 1f
     }
 
@@ -36,37 +34,44 @@ class ShadowView(
 
     fun setShadowProps(shadowProps: ReadableMap?) {
         if (shadowProps != null) {
-            var shadowOffset = shadowProps.getMap("shadowOffset")
+            val shadowOffset = shadowProps.getMap("shadowOffset")
             if (shadowOffset != null) {
-                if (shadowOffset.hasKey("width")) {
-                    var shadowX = shadowOffset.getDouble("width").toFloat()
-                    shadow_x_shift = shadowX
+                shadow_x_shift = if (shadowOffset.hasKey("width")) {
+                    val shadowX = shadowOffset.getDouble("width").toFloat()
+                    shadowX
+                } else {
+                    0f
                 }
 
-                if (shadowOffset.hasKey("height")) {
-                    var shadowY = shadowOffset.getDouble("height").toFloat()
-                    shadow_y_shift = shadowY
+                shadow_y_shift = if (shadowOffset.hasKey("height")) {
+                    val shadowY = shadowOffset.getDouble("height").toFloat()
+                    shadowY
+                } else {
+                    0f
                 }
             }
             if (shadowProps.hasKey("shadowRadius")) {
-                var shadowRadius = shadowProps.getDouble("shadowRadius").toFloat()
+                val shadowRadius = shadowProps.getDouble("shadowRadius").toFloat()
                 shadow_radius = shadowRadius
             }
 
-            if (shadowProps.hasKey("shadowColor")) {
-                var shadowColor = shadowProps.getInt("shadowColor")
-                if (shadowProps.hasKey("shadowOpacity")) {
-                    var shadowOpacity = shadowProps.getDouble("shadowOpacity").toFloat()
-                    shadowColor = getColorWithOpacity(shadowColor, shadowOpacity)
+            shadow_color = when {
+                shadowProps.hasKey("shadowColor") -> {
+                    var shadowColor = shadowProps.getInt("shadowColor")
+                    shadowColor = if (shadowProps.hasKey("shadowOpacity")) {
+                        val shadowOpacity = shadowProps.getDouble("shadowOpacity").toFloat()
+                        getColorWithOpacity(shadowColor, shadowOpacity)
+                    } else {
+                        getColorWithOpacity(shadowColor, 0f)
+                    }
+                    shadowColor
                 }
-                shadow_color = shadowColor
-                shadow_with_color = false
-            } else if (shadowProps.hasKey("shadowOpacity")) {
-                var shadowOpacity = shadowProps.getDouble("shadowOpacity").toFloat()
-                shadow_color = getColorWithOpacity(0, shadowOpacity)
+                shadowProps.hasKey("shadowOpacity") -> {
+                    val shadowOpacity = shadowProps.getDouble("shadowOpacity").toFloat()
+                    getColorWithOpacity(0, shadowOpacity)
+                }
+                else -> getColorWithOpacity(0, 0f)
             }
-
-            Log.d("ShadowView", shadowProps.toString())
         }
     }
 }
