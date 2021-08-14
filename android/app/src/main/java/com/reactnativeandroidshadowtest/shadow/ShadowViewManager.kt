@@ -13,7 +13,7 @@ class ShadowViewManager(
 ): ViewGroupManager<ShadowView>() {
 
     override fun getName(): String {
-        return "ShadowView"
+        return "ShadowViewNative"
     }
 
     override fun createViewInstance(context: ThemedReactContext): ShadowView {

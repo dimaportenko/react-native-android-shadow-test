@@ -19,7 +19,7 @@ import {
 } from 'react-native';
 
 import {Colors} from 'react-native/Libraries/NewAppScreen';
-import {ShadowBox} from './src/native/shadow';
+import {ShadowView} from './src/native/shadow';
 
 const App = () => {
   const isDarkMode = useColorScheme() === 'dark';
@@ -40,19 +40,19 @@ const App = () => {
         {/*</ShadowBox>*/}
       </View>
       <View style={{padding: 20}}>
-        <ShadowBox style={{...styles.shadow, backgroundColor: 'gray'}}>
+        <ShadowView style={{...styles.shadow, backgroundColor: 'gray'}}>
           <Text>TEst</Text>
-        </ShadowBox>
+        </ShadowView>
       </View>
       <View style={{padding: 20}}>
-        <ShadowBox style={[{backgroundColor: 'red'}, styles.shadow1]}>
+        <ShadowView style={[{backgroundColor: 'red'}, styles.shadow1]}>
           <Text>TEst</Text>
-        </ShadowBox>
+        </ShadowView>
       </View>
       <View style={{padding: 20}}>
-        <ShadowBox style={[{backgroundColor: 'pink'}, styles.shadow2]}>
+        <ShadowView style={[{backgroundColor: 'pink'}, styles.shadow2]}>
           <Text>TEst</Text>
-        </ShadowBox>
+        </ShadowView>
       </View>
     </SafeAreaView>
   );

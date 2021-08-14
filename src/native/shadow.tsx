@@ -32,11 +32,11 @@ const ShadowComponent = requireNativeComponent<
   {
     shadowProps: ShadowProps;
   } & ViewProps
->('ShadowView');
+>('ShadowViewNative');
 
 type Props = ViewProps;
 
-export const ShadowBox: FC<Props> = ({children, style, ...otherProps}) => {
+export const ShadowView: FC<Props> = ({children, style, ...otherProps}) => {
   if (Platform.OS !== 'android') {
     return (
       <View {...otherProps} style={style}>
